@@ -1,0 +1,36 @@
+{
+  "name": "sentinel-cli",
+  "version": "1.0.0",
+  "description": "Real-time process and server health monitor",
+  "main": "dist/index.js",
+  "bin": {
+    "sentinel": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "cli",
+    "monitor",
+    "process",
+    "devops"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "chalk": "^4.1.2",
+    "commander": "^14.0.3",
+    "pidusage": "^4.0.1",
+    "ps-list": "^8.1.1"
+  },
+  "devDependencies": {
+    "@types/iarna__toml": "^2.0.5",
+    "@types/node": "^25.5.0",
+    "@types/pidusage": "^2.0.5",
+    "typescript": "^5.9.3"
+  }
+}

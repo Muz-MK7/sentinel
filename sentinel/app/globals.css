@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-obsidian: #0D0D0D;
+  --color-steel: #E5E5E5;
+  --color-iron: #262626;
+  --color-gunmetal: #404040;
+  --color-orange: #FF5F1F;
+  --color-green: #00FF41;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0D0D0D;
+  color: #E5E5E5;
+  font-family: var(--font-jetbrains-mono), monospace;
+  cursor: crosshair;
+}
+
+/* Blueprint grid background */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scanline overlay */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Chamfered corner clip */
+.chamfered {
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+}
+
+.chamfered-sm {
+  clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
+}
+
+/* Diamond separator */
+.diamond-sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #404040;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.diamond-sep::before,
+.diamond-sep::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #404040;
+}
+
+/* Glitch hover effect */
+@keyframes glitch {
+  0%   { clip-path: inset(0 0 95% 0); transform: translate(-2px, 0); }
+  10%  { clip-path: inset(40% 0 50% 0); transform: translate(2px, 0); }
+  20%  { clip-path: inset(80% 0 5% 0); transform: translate(-1px, 0); }
+  30%  { clip-path: inset(20% 0 70% 0); transform: translate(1px, 0); }
+  40%  { clip-path: inset(60% 0 30% 0); transform: translate(-2px, 0); }
+  50%  { clip-path: inset(0 0 100% 0); transform: translate(0, 0); }
+  100% { clip-path: inset(0 0 100% 0); transform: translate(0, 0); }
+}
+
+.glitch-parent:hover .glitch-layer {
+  animation: glitch 0.4s steps(1) forwards;
+  position: absolute;
+  inset: 0;
+  color: #FF5F1F;
+  pointer-events: none;
+}
